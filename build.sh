@@ -6,7 +6,7 @@ set -o pipefail
 
 top=$(pwd)
 
-git clone https://git.ipxe.org/ipxe.git
+git clone -q https://git.ipxe.org/ipxe.git
 cp -Rv src ipxe
 cd ipxe
 gv=$(git rev-parse --short HEAD)
