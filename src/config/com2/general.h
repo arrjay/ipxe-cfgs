@@ -16,8 +16,8 @@
 #define  CONSOLE_CMD             /* Console command */
 #define  NTP_CMD                 /* NTP commands */
 
-#undef BANNER_TIMEOUT            /* Extend Banner timeout */
-#define BANNER_TIMEOUT 30
+#undef BANNER_TIMEOUT            /* Remove Banner timeout */
+#define BANNER_TIMEOUT 0
 
 #define EFI_DOWNGRADE_UX         /* retain EFI_LOAD_FILE_PROTOCOL from Firmware */
 
