@@ -2,4 +2,4 @@
 
 set comport 2
 dhcp
-chain tftp://${next-server}/ipxe.d/com/${platform}.ipxe || shell
+chain tftp://${next-server}/ipxe.d/com/${buildarch}-${platform}.ipxe || shell
