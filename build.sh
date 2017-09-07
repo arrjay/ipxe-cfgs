@@ -18,10 +18,11 @@ for cfg in ${top}/src/config/* ; do
   com*) embed="EMBED=com.ipxe" ;;
   *) embed="" ;;
  esac
- targs="bin/ipxe.lkrn bin-x86_64-efi/ipxe.efi bin-i386-efi/ipxe.efi"
+ targs="bin/ipxe.pxe bin/ipxe.lkrn bin-x86_64-efi/ipxe.efi bin-i386-efi/ipxe.efi"
  make -s NO_WERROR=1 V=1 GITVERSION=${gv} CROSS_COMPILE=x86_64-linux-gnu- CONFIG=${b} ${targs} ${embed}
  mkdir -p ${top}/release/${b}
  mv bin/ipxe.lkrn ${top}/release/${b}/ipxe.lkrn
+ mv bin/ipxe.pxe ${top}/release/${b}/ipxe.pxe
  mv bin-x86_64-efi/ipxe.efi ${top}/release/${b}/ipxe-amd64.efi
  mv bin-i386-efi/ipxe.efi ${top}/release/${b}/ipxe-ia32.efi
  make clean
