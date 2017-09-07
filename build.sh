@@ -15,7 +15,7 @@ pushd src
 for cfg in ${top}/src/config/* ; do
  b=${cfg##*/}
  case ${b} in
-  com*) embed="EMBED=com.ipxe" ;;
+  com*) embed="EMBED=${b}.ipxe" ;;
   *) embed="" ;;
  esac
  targs="bin/ipxe.pxe bin/ipxe.lkrn bin-x86_64-efi/ipxe.efi bin-i386-efi/ipxe.efi"

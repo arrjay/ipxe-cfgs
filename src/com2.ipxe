@@ -1,4 +1,5 @@
 #!ipxe
 
+set comport 2
 dhcp
 chain com.ipxe

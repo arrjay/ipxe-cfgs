@@ -1,0 +1,5 @@
+#!ipxe
+
+set comport 1
+dhcp
+chain com.ipxe
