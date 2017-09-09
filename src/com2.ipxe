@@ -1,6 +1,7 @@
 #!ipxe
 
 set comport 2
+cpuid --ext 29 && set arch x86_64 || set arch i386
 dhcp
 chain tftp://${next-server}/ipxe.d/com/${buildarch}-${platform}.ipxe ||
 chain tftp://${next-server}/ipxe.d/com.ipxe ||
