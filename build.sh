@@ -2,6 +2,12 @@
 
 set -eux
 
+set +u
+if [ -z "${MAKEFLAGS}" ] ; then
+  MAKEFLAGS=""
+fi
+set -u
+
 set -o pipefail
 
 top=$(pwd)
@@ -20,7 +26,7 @@ for cfg in ${top}/src/config/* ; do
   *) embed="" ;;
  esac
  targs="bin/ipxe.pxe bin/ipxe.lkrn bin-x86_64-efi/ipxe.efi bin-i386-efi/ipxe.efi"
- make -j2 -s NO_WERROR=1 V=0 GITVERSION=${gv} CROSS_COMPILE=x86_64-linux-gnu- CONFIG=${b} ${targs} ${embed}
+ make ${MAKEFLAGS} -s NO_WERROR=1 V=0 GITVERSION=${gv} CROSS_COMPILE=x86_64-linux-gnu- CONFIG=${b} ${targs} ${embed}
  mkdir -p ${top}/release/${b}
  mv bin/ipxe.lkrn ${top}/release/${b}/ipxe-pcbios.lkrn
  mv bin/ipxe.pxe ${top}/release/${b}/ipxe-pcbios.pxe
