@@ -1,0 +1,28 @@
+diff --git a/src/Makefile.housekeeping b/src/Makefile.housekeeping
+index 00b07926..a1ccd0c3 100644
+--- a/src/Makefile.housekeeping
++++ b/src/Makefile.housekeeping
+@@ -838,7 +838,6 @@ endef
+ # $(3) is the source base name (e.g. "rtl8139")
+ #
+ define deps_template_parts
+-	@$(ECHO) "  [DEPS] $(1)"
+ 	@$(MKDIR) -p $(BIN)/deps/$(dir $(1))
+ 	$(Q)$(CPP) $(CFLAGS) $(CFLAGS_$(2)) $(CFLAGS_$(3)) -DOBJECT=$(3) \
+ 		-Wno-error -M $(1) -MG -MP | \
+@@ -859,7 +858,6 @@ endef
+ #
+ define rules_template_parts
+ $$(BIN)/$(3).o : $(1) $$(MAKEDEPS) $$(POST_O_DEPS) $$($(3)_DEPS)
+-	$$(QM)$(ECHO) "  [BUILD] $$@"
+ 	$$(RULE_$(2))
+ BOBJS += $$(BIN)/$(3).o
+ $(foreach TGT,$(GENERIC_TARGETS),$(if $(RULE_$(2)_to_$(TGT)),$(NEWLINE)$(call rules_template_target,$(1),$(2),$(3),$(TGT))))
+@@ -874,7 +872,6 @@ endef
+ #
+ define rules_template_target
+ $$(BIN)/$(3).$(4) : $(1) $$(MAKEDEPS) $$(POST_O_DEPS) $$($(3)_DEPS)
+-	$$(QM)$(ECHO) "  [BUILD] $$@"
+ 	$$(RULE_$(2)_to_$(4))
+ $(TGT)_OBJS += $$(BIN)/$(3).$(4)
+ endef

@@ -10,6 +10,7 @@ git clone -q https://git.ipxe.org/ipxe.git
 cp -R src ipxe
 pushd ipxe
 gv=$(git rev-parse --short HEAD)
+patch -p1 < ../Makefile.housekeeping.patch
 pushd src
 
 for cfg in ${top}/src/config/* ; do
@@ -19,7 +20,7 @@ for cfg in ${top}/src/config/* ; do
   *) embed="" ;;
  esac
  targs="bin/ipxe.pxe bin/ipxe.lkrn bin-x86_64-efi/ipxe.efi bin-i386-efi/ipxe.efi"
- make -s NO_WERROR=1 V=1 GITVERSION=${gv} CROSS_COMPILE=x86_64-linux-gnu- CONFIG=${b} ${targs} ${embed}
+ make -j$(nproc) -s NO_WERROR=1 V=0 GITVERSION=${gv} CROSS_COMPILE=x86_64-linux-gnu- CONFIG=${b} ${targs} ${embed}
  mkdir -p ${top}/release/${b}
  mv bin/ipxe.lkrn ${top}/release/${b}/ipxe-pcbios.lkrn
  mv bin/ipxe.pxe ${top}/release/${b}/ipxe-pcbios.pxe
