@@ -18,7 +18,9 @@ fi
 cp -R src ipxe
 pushd ipxe
 gv=$(git rev-parse --short HEAD)
-patch -p1 < ../Makefile.housekeeping.patch
+if [ ! $(egrep -q '\[(BUILD|DEPS)\]' ipxe/src/Makefile.housekeeping) ] ; then
+  patch -p1 < ../Makefile.housekeeping.patch
+fi
 pushd src
 
 for cfg in ${top}/src/config/* ; do
