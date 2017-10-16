@@ -38,5 +38,6 @@ done
 popd && popd
 
 pushd release
-tar czf ../ipxe-${gv}.tgz .
+echo "${gv}" > IPXE_VERSION
+tar czf ../ipxe-binaries.tgz .
 popd
