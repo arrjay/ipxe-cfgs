@@ -12,7 +12,9 @@ set -o pipefail
 
 top=$(pwd)
 
+if [ ! -d ipxe/.git ] ; then
 git clone -q https://git.ipxe.org/ipxe.git
+fi
 cp -R src ipxe
 pushd ipxe
 gv=$(git rev-parse --short HEAD)
