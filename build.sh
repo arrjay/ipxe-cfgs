@@ -30,12 +30,13 @@ for cfg in ${top}/src/config/* ; do
   *) embed="" ;;
  esac
  targs="bin/ipxe.pxe bin/ipxe.lkrn bin-x86_64-efi/ipxe.efi bin-i386-efi/ipxe.efi"
- make ${MAKEFLAGS} NO_WERROR=1 V=0 GITVERSION=${gv} CROSS_COMPILE=x86_64-linux-gnu- CONFIG=${b} ${targs} ${embed}
- mkdir -p ${top}/release/${b}
- mv bin/ipxe.lkrn ${top}/release/${b}/ipxe-pcbios.lkrn
- mv bin/ipxe.pxe ${top}/release/${b}/ipxe-pcbios.pxe
- mv bin-x86_64-efi/ipxe.efi ${top}/release/${b}/ipxe-x86_64.efi
- mv bin-i386-efi/ipxe.efi ${top}/release/${b}/ipxe-i386.efi
+ # shellcheck disable=SC2086
+ make ${MAKEFLAGS} NO_WERROR=1 V=0 GITVERSION="${gv}" CROSS_COMPILE=x86_64-linux-gnu- CONFIG="${b}" ${targs} ${embed}
+ mkdir -p "${top}/release/${b}"
+ mv bin/ipxe.lkrn "${top}/release/${b}/ipxe-pcbios.lkrn"
+ mv bin/ipxe.pxe "${top}/release/${b}/ipxe-pcbios.pxe"
+ mv bin-x86_64-efi/ipxe.efi "${top}/release/${b}/ipxe-x86_64.efi"
+ mv bin-i386-efi/ipxe.efi "${top}/release/${b}/ipxe-i386.efi"
  make clean
 done
 
