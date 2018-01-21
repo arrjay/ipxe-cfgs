@@ -1,0 +1,3 @@
+#!ipxe
+chain tftp://${next-server}/_grub/${buildarch}-${platform}/com${comport}.0 ||
+chain tftp://${next-server}/_grub/${buildarch}-${platform}/core.0 ||

@@ -1,0 +1,2 @@
+#!ipxe
+chain tftp://${next-server}/ipxe/com1/ipxe-${platform}.pxe ||

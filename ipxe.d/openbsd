@@ -1,0 +1,27 @@
+#!ipxe
+iseq ${platform} pcbios && goto pcbios
+echo could not handle platform
+goto shell
+
+:pcbios
+iseq ${arch} x86_64 && goto pcbios_x86_64 ||
+echo could not handle processor architecture
+goto shell
+
+:pcbios_x86_64
+isset ${comport} || set pserver  ||
+iseq ${comport} 1 && set pserver  ||
+isset ${pserver} && goto load ||
+echo could not handle console
+goto shell
+
+:load
+set netX/next-server ${pserver}
+set netX/filename auto_install
+
+echo server:${next-server} file:${filename} set in PXE env pre-handoff
+sleep 1
+
+chain tftp://${next-server}/_openbsd//${arch}/pxeboot.0 ||
+:shell
+shell

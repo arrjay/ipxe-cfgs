@@ -1,0 +1,7 @@
+#!ipxe\necho iPXE loaded
+cpuid --ext 29 && set arch x86_64 || set arch i386
+chain plat/${buildarch}-${platform}.ipxe ||
+chain mfr/${manufacturer}/${buildarch}-${platform}.ipxe ||
+chain mfr/${manufacturer}.ipxe ||
+chain mac/${netX/mac:hexhyp}.ipxe ||
+shell\n'
