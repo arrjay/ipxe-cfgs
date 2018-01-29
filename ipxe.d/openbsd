@@ -9,8 +9,8 @@ echo could not handle processor architecture
 goto shell
 
 :pcbios_x86_64
-isset ${comport} || set pserver  ||
-iseq ${comport} 1 && set pserver  ||
+# rely on http returning pxe handoff values :/
+chain http://${next-server}/pserver.ipxe ||
 isset ${pserver} && goto load ||
 echo could not handle console
 goto shell
